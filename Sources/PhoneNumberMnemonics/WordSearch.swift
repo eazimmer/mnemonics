@@ -38,9 +38,9 @@ public func convert(_ char: String) -> [String] {
 // possible letters that could be in place of that character
 // For instance, 234 becomes [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
 public func letters(for phoneNumber: String) -> [[String]] {
-    // YOU FILL IN HERE
-    let nums = phoneNumber.map {$0.}
-
+    let stringArray = phoneNumber.map (String.init) // Converting string into array of strings
+    let letters = stringArray.map {convert($0)} // Translating string numbers into char equivs
+    return letters
 }
 
 // Finds all of the ordered permutations of a given
