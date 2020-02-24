@@ -7,11 +7,40 @@ import Foundation
 // Feel free to put in additional utility code as long as you have
 // no loops, no *mutable* global variables, and no custom classes.
 
+// Takes a string character and returns a String array
+// of numbers that can represent that character
+public func convert(_ char: String) -> [String] {
+    var letters: [String] = []
+    switch char.uppercased() {
+        case "2":
+            letters = ["A","B","C"]
+        case "3":
+            letters = ["D","E","F"]
+        case "4":
+            letters = ["G","H","I"]
+        case "5":
+            letters = ["J","K","L"]
+        case "6":
+            letters = ["M","N","O"]
+        case "7":
+            letters = ["P","Q","R","S"]
+        case "8":
+            letters = ["T","U","V"]
+        case "9":
+            letters = ["W","X","Y","Z"]
+        default:
+            letters = [char.uppercased()]
+    }
+    return letters
+}
+
 // Replaces each character in a phone number with an array of the
 // possible letters that could be in place of that character
 // For instance, 234 becomes [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
 public func letters(for phoneNumber: String) -> [[String]] {
     // YOU FILL IN HERE
+    let nums = phoneNumber.map {$0.}
+
 }
 
 // Finds all of the ordered permutations of a given
