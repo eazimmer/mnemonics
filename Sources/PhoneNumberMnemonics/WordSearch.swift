@@ -50,7 +50,14 @@ public func letters(for phoneNumber: String) -> [[String]] {
 // For instance permuations(of: [["a", "b"], ["c"], ["d", "e"]]) will return
 // ["acd", "ace" "bcd", "bce"]
 public func permutations(of arrays: [[String]]) -> [String] {
-    // YOU FILL IN HERE
+  let viewing = arrays.first! // Force unwrapping of optional
+
+  if arrays.count == 1 { 
+    return viewing
+  }
+  
+  let output = permutations(of: Array(arrays.dropFirst(1)))
+  return viewing.flatMap { x in output.map { y in x + y}} // Will return optional
 }
 
 // Finds all of the possible strings of characters that a phone number
