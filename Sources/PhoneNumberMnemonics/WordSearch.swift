@@ -64,7 +64,8 @@ public func permutations(of arrays: [[String]]) -> [String] {
 // can potentially represent
 // Uses letters(for:) and permutations(of:) to do this
 public func possibles(for phoneNumber: String) -> [String] {
-    // YOU FILL IN HERE
+    let options = permutations(of: letters(for: phoneNumber))
+    return options
 }
 
 // Returns all of the words in a given *string* from the wordlist.txt file
