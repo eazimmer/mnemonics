@@ -70,21 +70,19 @@ public func possibles(for phoneNumber: String) -> [String] {
 
 // Returns all of the words in a given *string* from the wordlist.txt file
 // using only words in the word list of minimum length ofMinLength
-public func wordsInString(_ string: String, ofMinLength length: UInt) -> [String] {
-
-    // UNFINISHED
-
-  let path = "words.txt"
+func wordsInString(_ string: String, ofMinLength length: UInt) -> [String] {
   var contents: String = ""
+
   do {
-    let data = try String(contentsOfFile: path)
+    let data = try String(contentsOfFile: "words.txt")
     contents = data
   } catch {
     print("An error occurred, the file could not be read.")
   }
-  let words = contents.replacingOccurrences(of: "\n", with: ",").components(separatedBy: ",")
 
-  return words
+  let words = contents.components(separatedBy: "\n")
+
+  return words.filter {string.contains($0) && $0.length >= length}
 }
 
 // Returns all possibles strings of characters that a phone number
