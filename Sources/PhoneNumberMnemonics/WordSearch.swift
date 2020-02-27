@@ -94,15 +94,22 @@ public func possiblesWithWholeWords(ofMinLength length: UInt, for phoneNumber: S
 // words.txt, it will return both of them, if the are no other mnemonics
 // that contain more than three words
 public func mostWords(for phoneNumber: String) -> [String] {
-    // YOU FILL IN HERE
-    print("TMP FUNCTION")
-    return [] //TEMP RETURN
+  
+    let phoneNumberOptions = possibles(for: phoneNumber)
+
+    let optionsWithCount = phoneNumberOptions.map{ wordsInString($0, ofMinLength: 0).count }
+
+    let most = Dictionary(uniqueKeysWithValues : zip(phoneNumberOptions, optionsWithCount)).sorted{$0.value > $1.value}
+
+    let mostv = most.first!
+
+    return most.filter{$0.value >= mostv.value}.map{$0.key}
 }
 
 // Returns the phone number mnemonics with the longest words from words.txt
 // If more than one word is tied for the longest, returns all of them
 public func longestWords(for phoneNumber: String) -> [String] {
     // YOU FILL IN HERE
-    print("TMP FUNCTION")
+    print("INSIDE OF LONGEST WORDS")
     return [] //TEMP RETURN
 }
