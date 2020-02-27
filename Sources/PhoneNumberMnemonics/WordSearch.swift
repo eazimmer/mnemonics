@@ -80,7 +80,9 @@ func wordsInString(_ string: String, ofMinLength length: UInt) -> [String] {
     print("An error occurred, the file could not be read.")
   }
 
-  let words = contents.components(separatedBy: "\n")
+  var words = contents.components(separatedBy: "\n")
+
+  words = words.map{ $0.uppercased() }
 
   return words.filter {string.contains($0) && $0.length >= length}
 }
