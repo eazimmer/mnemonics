@@ -70,19 +70,9 @@ public func possibles(for phoneNumber: String) -> [String] {
 
 // Returns all of the words in a given *string* from the wordlist.txt file
 // using only words in the word list of minimum length ofMinLength
-func wordsInString(_ string: String, ofMinLength length: UInt) -> [String] {
-  var contents: String = ""
+public func wordsInString(_ string: String, ofMinLength length: UInt) -> [String] {
 
-  do {
-    let data = try String(contentsOfFile: "words.txt")
-    contents = data
-  } catch {
-    print("An error occurred, the file could not be read.")
-  }
-
-  var words = contents.components(separatedBy: "\n")
-
-  words = words.map{ $0.uppercased() }
+  let words = queryFile()
 
   return words.filter {string.contains($0) && $0.length >= length}
 }
@@ -110,5 +100,5 @@ public func mostWords(for phoneNumber: String) -> [String] {
 // Returns the phone number mnemonics with the longest words from words.txt
 // If more than one word is tied for the longest, returns all of them
 public func longestWords(for phoneNumber: String) -> [String] {
-    // YOU FILL IN HERE
+    //Working on it
 }
