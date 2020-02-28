@@ -38,7 +38,8 @@ public func convert(_ char: String) -> [String] {
 // possible letters that could be in place of that character
 // For instance, 234 becomes [["A", "B", "C"], ["D", "E", "F"], ["G", "H", "I"]]
 public func letters(for phoneNumber: String) -> [[String]] {
-    let stringArray = phoneNumber.map (String.init) // Converting string into array of strings
+    let stringArray = phoneNumber.map (String.init).filter{$0 != "-"} // Converting string into array of strings
+
     let letters = stringArray.map {convert($0)} // Translating string numbers into char equivs
     return letters
 }
@@ -103,7 +104,11 @@ public func mostWords(for phoneNumber: String) -> [String] {
 
     let optionsWithCount = phoneNumberOptions.map{ wordsInString($0, ofMinLength: 1).count }
 
-    let most = Dictionary(uniqueKeysWithValues : zip(phoneNumberOptions, optionsWithCount)).sorted{$0.value > $1.value}
+    let most = Dictionary(uniqueKeysWithValues : zip(phoneNumberOptions, optionsWithCount)).sorted{$0.value > $1.value}.filter{$0.value != 0}
+
+    if most.count == 0 {
+      return []
+    }
 
     let mostv = most.first!
 
