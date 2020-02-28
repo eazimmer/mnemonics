@@ -74,7 +74,7 @@ public func wordsInString(_ string: String, ofMinLength length: UInt) -> [String
 
   let words = queryFile()
 
-  return words.filter {string.contains($0) && $0.length >= length}
+  return words.filter {string.contains($0) && $0.length >= length}.sorted{$0.length > $1.length}
 }
 
 // Returns all possibles strings of characters that a phone number
@@ -97,7 +97,11 @@ public func mostWords(for phoneNumber: String) -> [String] {
   
     let phoneNumberOptions = possibles(for: phoneNumber)
 
-    let optionsWithCount = phoneNumberOptions.map{ wordsInString($0, ofMinLength: 0).count }
+    if phoneNumberOptions == [] {
+      return []
+    }
+
+    let optionsWithCount = phoneNumberOptions.map{ wordsInString($0, ofMinLength: 1).count }
 
     let most = Dictionary(uniqueKeysWithValues : zip(phoneNumberOptions, optionsWithCount)).sorted{$0.value > $1.value}
 
@@ -110,6 +114,18 @@ public func mostWords(for phoneNumber: String) -> [String] {
 // If more than one word is tied for the longest, returns all of them
 public func longestWords(for phoneNumber: String) -> [String] {
     // YOU FILL IN HERE
-    print("INSIDE OF LONGEST WORDS")
-    return [] //TEMP RETURN
+
+    let phoneNumberOptions = possiblesWithWholeWords(ofMinLength: 1, for: phoneNumber)
+
+    if phoneNumberOptions == [] {
+      return []
+    }
+
+    let optionsWithCount = phoneNumberOptions.map{ wordsInString($0, ofMinLength: 1).first }
+
+    let most = Dictionary(uniqueKeysWithValues : zip(phoneNumberOptions, optionsWithCount)).filter{ $0.value != nil}.sorted{($0.value!).length > ($1.value!).length}
+
+    let mostv = most.first!
+
+    return most.filter{($0.value!).length >= (mostv.value!).length}.map{$0.key}
 }
